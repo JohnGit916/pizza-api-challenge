@@ -25,9 +25,6 @@ pizza-api-challenge/
 ├── Pipfile
 ├── README.md
 
-yaml
-Copy
-Edit
 
 ---
 
@@ -35,52 +32,47 @@ Edit
 
 1. **Clone the repository**
 
-   ```bash
-   git clone <your-repo-url>
-   cd pizza-api-challenge
-Create a virtual environment
+. Clone Your Repo
 
-bash
-Copy
-Edit
+git clone https://github.com/YourUsername/pizza-api-challenge.git
+cd pizza-api-challenge
+
+2. Install Dependencies
+Make sure they have Python installed. Then:
+
+pip install pipenv
 pipenv install
-pipenv shell
-Configure the database
 
-PostgreSQL must be installed and running.
+3. Set Environment Variable for Flask
+Tell Flask where to find the app.
 
-Create a database (e.g., pizza_db):
+Linux/macOS:
 
-bash
-Copy
-Edit
-createdb pizza_db
-Update your Config in server/config.py:
+export FLASK_APP=server.app:app
 
-python
-Copy
-Edit
-SQLALCHEMY_DATABASE_URI = 'postgresql://<username>:<password>@localhost:5432/pizza_db'
-Run migrations
+Windows CMD:
 
-bash
-Copy
-Edit
-pipenv run flask db init
-pipenv run flask db migrate -m "Initial migration"
+set FLASK_APP=server.app:app
+
+Windows PowerShell:
+
+$env:FLASK_APP = "server.app:app"
+
+4. Run Migrations
+
 pipenv run flask db upgrade
-Seed the database
 
-bash
-Copy
-Edit
-pipenv run python -m server.seed
-Run the server
+5. Seed the Database
 
-bash
-Copy
-Edit
+pipenv run python server/seed.py
+
+This will insert sample pizzas, restaurants, and prices.
+
+6. Run the Flask Server
 pipenv run flask run
+The API will now be available at:
+http://127.0.0.1:5000
+
 🚀 API Routes
 🎯 Pizzas
 GET /pizzas
@@ -101,11 +93,14 @@ POST /restaurant_pizzas
 Creates a new restaurant-pizza (relationship between a pizza and a restaurant with a price).
 
 Testing with Postman
-Import the API endpoints manually or create a collection.
+=====================
+Open Postman and import the file challenge-1-pizzas.postman_collection.json.
 
-Use POST to /restaurant_pizzas with raw JSON body to create relationships.
+Use POST to /restaurant_pizzas to create relationships.
 
-Test GET endpoints to confirm data is returned correctly.
+Use GET endpoints to confirm data is returned correctly.
+
+Use DELETE to test data deletion.
 
 🧠 Technologies Used
 Flask
