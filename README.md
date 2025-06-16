@@ -58,7 +58,11 @@ Windows PowerShell:
 
 $env:FLASK_APP = "server.app:app"
 
-4. Run Migrations
+4. Setup database & Run Migrations
+
+Ensure PostgreSQL is running and create a database named (or update credentials in config.py):
+
+createdb pizza_api_db
 
 pipenv run flask db upgrade
 
