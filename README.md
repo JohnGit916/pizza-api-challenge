@@ -68,7 +68,7 @@ pipenv run flask db upgrade
 
 5. Seed the Database
 
-pipenv run python server/seed.py
+pipenv run python -m server.seed
 
 This will insert sample pizzas, restaurants, and prices.
 
@@ -79,22 +79,28 @@ http://127.0.0.1:5000
 
 🚀 API Routes
 🎯 Pizzas
-GET /pizzas
-Returns all pizzas with id, name, and ingredients.
+GET /pizzas — Get all pizzas.
+
+POST /pizzas — Create a new pizza.
+
+PUT /pizzas/<id> — Update a pizza.
+
+DELETE /pizzas/<id> — Delete a pizza.
 
 🏬 Restaurants
-GET /restaurants
-Returns all restaurants with id, name, and address.
+GET /restaurants — Get all restaurants.
 
-GET /restaurants/<int:id>
-Returns a specific restaurant and its associated pizzas.
+GET /restaurants/<id> — Get one restaurant and its pizzas.
 
-DELETE /restaurants/<int:id>
-Deletes a restaurant and associated restaurant-pizzas.
+POST /restaurants — Create a new restaurant.
+
+PUT /restaurants/<id> — Update a restaurant.
+
+DELETE /restaurants/<id> — Delete a restaurant.
 
 🍕 Restaurant Pizzas
-POST /restaurant_pizzas
-Creates a new restaurant-pizza (relationship between a pizza and a restaurant with a price).
+POST /restaurant_pizzas — Add a pizza to a restaurant at a given price.
+Returns nested restaurant and pizza data.
 
 Testing with Postman
 =====================
